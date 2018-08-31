@@ -6,30 +6,29 @@ Use case
 ---
 Sometimes I screw up creating a new screen session (`screen -S session_name`) instead of reattaching (`screen -rx session_name`). This simple script is made to help simplify that.
 
-Let's create a new screen session, named "service", run the background process, and then detach.
+Let's create a new screen session named "service", run some background process, and then detach.
 
 ```sh
 scr service
-# ... run the background process
+# ... run background process
 # detach using Ctrl+a d
 ```
-When we want to reattach, we simply run
+When we want to reattach, we simply run the same command
 ```sh
 scr service
-# will reattach to previous 'service' session,
-# without creating a new one
+# will reattach to session 'service' instead of creating a new one
 ```
 It will always reattach to the same session, until that session is terminated
 ```sh
 # inside session 'service'
-exit # terminate session
+exit
+# [screen is terminating]
 scr service # will create a new session
 ```
 It also matches strictly by name instead of pattern
 ```sh
 scr serv
-# will create a new session 'serv',
-# instead of reattaching to session 'service'
+# will create a new session 'serv' instead of reattaching to session 'service'
 ```
 
 Installation
